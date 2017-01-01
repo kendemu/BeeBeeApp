@@ -19,7 +19,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new _bluebird2.default(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return _bluebird2.default.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 var app = (0, _express2.default)();
-var port = process.env.port || 3000;
 
 /* use static files */
 app.use('/css', _express2.default.static(__dirname + '/css'));
@@ -29,6 +28,7 @@ app.use('/bootstrap', _express2.default.static(__dirname + '/bootstrap'));
 app.use('/jquery', _express2.default.static(__dirname + '/jquery'));
 
 /* set up view engines */
+app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
 
 /* get menus */
@@ -44,7 +44,7 @@ app.get('/', function () {
 												switch (_context.prev = _context.next) {
 															case 0:
 																		if (!(menus === undefined)) {
-																					_context.next = 6;
+																					_context.next = 4;
 																					break;
 																		}
 
@@ -54,62 +54,59 @@ app.get('/', function () {
 															case 3:
 																		menus = _context.sent;
 
-																		res.setHeader('Content-Type', 'application/json');
-																		res.send(JSON.stringify({ a: 1 }));
-
-															case 6:
-																		_context.prev = 6;
+															case 4:
+																		_context.prev = 4;
 
 																		if (!(foods_menu === undefined)) {
-																					_context.next = 20;
+																					_context.next = 18;
 																					break;
 																		}
 
 																		foods_menu = [];
 																		i = 0;
 
-															case 10:
+															case 8:
 																		if (!(i < menus.length)) {
-																					_context.next = 19;
+																					_context.next = 17;
 																					break;
 																		}
 
 																		_context.t0 = foods_menu;
-																		_context.next = 14;
+																		_context.next = 12;
 																		return _sqlite2.default.all('SELECT * FROM ' + menus[i].name);
 
-															case 14:
+															case 12:
 																		_context.t1 = _context.sent;
 
 																		_context.t0.push.call(_context.t0, _context.t1);
 
-															case 16:
+															case 14:
 																		i++;
-																		_context.next = 10;
+																		_context.next = 8;
 																		break;
 
-															case 19:
+															case 17:
 																		res.render('pages/index', {
 																					menus: menus,
 																					foods: foods_menu
 																		});
 
-															case 20:
-																		_context.next = 25;
+															case 18:
+																		_context.next = 23;
 																		break;
 
-															case 22:
-																		_context.prev = 22;
-																		_context.t2 = _context['catch'](6);
+															case 20:
+																		_context.prev = 20;
+																		_context.t2 = _context['catch'](4);
 
 																		next(_context.t2);
 
-															case 25:
+															case 23:
 															case 'end':
 																		return _context.stop();
 												}
 									}
-						}, _callee, undefined, [[6, 22]]);
+						}, _callee, undefined, [[4, 20]]);
 			}));
 
 			return function (_x, _x2, _x3) {
@@ -178,5 +175,7 @@ _bluebird2.default.resolve().then(function () {
 }).catch(function (err) {
 			return console.error(err.stack);
 }).finally(function () {
-			return app.listen(port);
+			return app.listen(app.get('port'), function () {
+						return console.log('App is running on port', app.get('port'));
+			});
 });

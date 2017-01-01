@@ -175,8 +175,6 @@ app.get('/menus', function () {
 
 _bluebird2.default.resolve().then(function () {
 			return _sqlite2.default.open('menu.db', { Promise: _bluebird2.default });
-}).then(function () {
-			return _sqlite2.default.migrate({ force: 'last' });
 }).catch(function (err) {
 			return console.error(err.stack);
 }).finally(function () {

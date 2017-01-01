@@ -67,6 +67,5 @@ app.get('/menus', async (req, res, next) => {
 
 Promise.resolve()
     .then(() => db.open('menu.db', {Promise}))
-    .then(() => db.migrate({force: 'last'}))
     .catch((err) => console.error(err.stack))
 	.finally(() => app.listen(port));

@@ -1,12 +1,9 @@
-import 'babel-core/register';
 import 'babel-polyfill';
 import express from 'express';
 import db from 'sqlite';
 import Promise from 'bluebird';
-import pagegen from './js/pagegen.js';
-
 const app = express();
-const port = process.env.port || 5000;
+const port = process.env.port || 3000;
 
 /* use static files */
 app.use('/css', express.static(__dirname + '/css'));

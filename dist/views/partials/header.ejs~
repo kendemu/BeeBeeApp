@@ -1,0 +1,13 @@
+<nav class="col-sm-12 col-xs-12 col-md-12 navbar navbar-dark bg-primary navbar-fixed-top" role="navigation">
+    <% menus.forEach(function(menu) {%>
+	<a class="col-md-2 col-xs-4 col-sm-4" style="color:white;font-size:2em" href="#<%= menu.name %>"><%= menu.name %></a>
+    <% }); %>
+</nav>
+
+<nav class="col-sm-12 col-xs-12 col-md-12 navbar navbar-default navbar-fixed-bottom" id="scrollbar" role="navigation">
+    <div class="container-fluid">
+	<div class="row">
+	    <input type="button" class="btn btn-lg btn-success col-md-6 col-sm-6 col-xs-6 col-md-offset-3 col-sm-offset-3 col-xs-offset-3" onclick="location.href='#';" value="Order" size="40"></input>
+	</div>	
+    </div>
+</nav>

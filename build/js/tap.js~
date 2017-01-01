@@ -1,0 +1,27 @@
+var hashtable = {};
+function plus(id){
+    if(hashtable[id] === undefined){
+	hashtable[id] = 1;
+	$("#orderingmenu").append("<tr id="+ id.replace(/ /g, "").replace(/'/g,"").replace(/&/g,"").replace(/\)/g,"").replace(/\(/g,"").replace(/\"/g,"") + "><td>"+id+"</td><td>" + hashtable[id] + "</td></tr>");
+
+    }
+    else{
+	hashtable[id] += 1;
+	$("#"+id.replace(/ /g, "").replace(/'/g,"").replace(/&/g,"").replace(/\)/g,"").replace(/\(/g,"")).html("<td>"+id+"</td><td>"+hashtable[id]+"</td>");
+    }
+    console.log(id);
+    console.log(hashtable[id]);
+}
+
+function minus(id){
+    if(hashtable[id] === undefined){
+	hashtable[id] = 0;
+    }
+    else if(hashtable[id] > 0){
+	hashtable[id] -= 1;
+	$("#"+id.replace(/ /g, "").replace(/'/g,"").replace(/&/g,"").replace(/\(/g,"").replace(/\)/g,"").replace(/\"/g,"")).html("<td>"+id+"</td><td>"+hashtable[id]+"</td>");
+    }
+    console.log(id);
+    console.log(hashtable[id]);
+}
+

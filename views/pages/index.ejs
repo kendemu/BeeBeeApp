@@ -45,20 +45,22 @@
 			<% foods[i].forEach(function(food){ %>
 			    <label class="menu-list-item col-md-12 col-xs-12 col-sm-12 panel panel-default" style="overflow-wrap:break-word">
 				<div class="panel-body">
-				<i class="fa fa-angle-right"></i>	
-				<p class="pull-left col-md-9 col-xs-9 col-sm-9" style="font-size:1.5em;overflow-wrap:break-word">
-				    <% if(food.name.length >= 21) { %>
-					<% food.name.match(/.{1,21}/g).forEach(function(wrap){ %>
-					    <br/>
-					    <%= wrap %>
-					<% }) %>
-				    <% } else{ %>
-					<%= food.name%>
-				    <% } %> 
-				</p>
-				<p class="pull-right col-md-3 col-xs-3 col-sm-3"><h3><%= food.price%></h3></p>
-				<button style="font-size:3em;color:white" class="glyphicon glyphicon-plus pull-left col-md-6 col-xs-6 col-sm-6 btn btn-danger" onclick="plus(&quot;<%= food.name.replace("\n","").replace(/\"/g, "&quot")%>&quot;)"></button>
-				<button style="font-size:3em;color:white" class="glyphicon glyphicon-minus pull-right col-md-6 col-xs-6 col-sm-6 btn btn-primary" onclick="minus(&quot;<%= food.name.replace("\n","").replace(/\"/g, "&quot")%>&quot;)"></button>
+				    <i class="fa fa-angle-right"></i>
+				    <div class="row">
+					<p class="pull-left col-md-9 col-xs-9 col-sm-9" style="font-size:1.5em;overflow-wrap:break-word">
+					    <% if(food.name.length >= 21) { %>
+						<% food.name.match(/.{1,21}/g).forEach(function(wrap){ %>
+						    <br/>
+						    <%= wrap %>
+						<% }) %>
+					    <% } else{ %>
+						<%= food.name%>
+					    <% } %> 
+					</p>
+					<p class="pull-right col-md-3 col-xs-3 col-sm-3"><h3><%= food.price%></h3></p>
+				    </div>
+				    <button style="font-size:3em;color:white" class="glyphicon glyphicon-plus pull-left col-md-6 col-xs-6 col-sm-6 btn btn-danger" onclick="plus(&quot;<%= food.name.replace("\n","").replace(/\"/g, "&quot")%>&quot;)"></button>
+				    <button style="font-size:3em;color:white" class="glyphicon glyphicon-minus pull-right col-md-6 col-xs-6 col-sm-6 btn btn-primary" onclick="minus(&quot;<%= food.name.replace("\n","").replace(/\"/g, "&quot")%>&quot;)"></button>
 
 				<div class="clearfix"></div>
 				</div>

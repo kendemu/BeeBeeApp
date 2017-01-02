@@ -49,13 +49,21 @@
 				    <div class="row">
 					<p class="pull-left col-md-9 col-xs-9 col-sm-9" style="font-size:1.5em;overflow-wrap:break-word">
 					    <% if(food.name.length >= 21) { %>
-						<% food.name.match(/.{1,21}/g).forEach(function(wrap){ %>
-						    <br/>
-						    <%= wrap %>
-						<% }) %>
-					    <% } else{ %>
-						<%= food.name%>
-					    <% } %> 
+						<% var line = "";%>
+						<% var sentence = food.name.split(" ") %>
+						<% for(var i = 0; i < sentence.length; i++){ %>
+						    <% line += " " + sentence[i]; %>
+						    <% if (line.length <= 20 && (line + (sentence[i+1] || "")).length > 20) { %>
+							<%= line.replace(/,/g, " ") %>
+							<% line = "" %>
+							<br/>
+						    <% } else if(i +1 === sentence.length){ %>
+						    <%= line %>
+						<% } %>
+					    <% } %>
+			<% } else{ %>
+					    <%= food.name%>
+			<% } %> 
 					</p>
 					<p class="pull-right col-md-3 col-xs-3 col-sm-3"><h3><%= food.price%></h3></p>
 				    </div>
